@@ -1,0 +1,609 @@
+{
+    "DBF": {
+        "label": "Campo",
+        "fatores": {},
+        "pagina": 1
+    },
+    "DT_INVEST": {
+        "label": "dt_investigacao",
+        "fatores": {},
+        "pagina": 1
+    },
+    "ID_OCUPA_N": {
+        "label": "co_cbo_ocupacao",
+        "fatores": {},
+        "pagina": 1
+    },
+    "ANT_AC": {
+        "label": "st_vacina_polissa\ncaridica_ac",
+        "fatores": {
+            "1": "Sim",
+            "2": "Não",
+            "9": "Ignorado"
+        },
+        "pagina": 2
+    },
+    "ANT_DOSE_3": {
+        "label": "nu_dose_polissac\naridica_ac",
+        "fatores": {},
+        "pagina": 2
+    },
+    "ANT_DTUL_3": {
+        "label": "dt_dose_polissac\naridica_ac",
+        "fatores": {},
+        "pagina": 2
+    },
+    "ANT_BC": {
+        "label": "st_vacina_polissa\ncaridica_bc",
+        "fatores": {
+            "1": "Sim",
+            "2": "Não",
+            "9": "Ignorado"
+        },
+        "pagina": 2
+    },
+    "ANT_DOSES_": {
+        "label": "nu_dose_polissac\naridica_bc",
+        "fatores": {},
+        "pagina": 2
+    },
+    "ANT_DTULT_": {
+        "label": "dt_dose_polissac\naridica_bc",
+        "fatores": {},
+        "pagina": 2
+    },
+    "ANT_CONJ_C": {
+        "label": "st_vacina_conjug\nada_meningo",
+        "fatores": {
+            "1": "Sim",
+            "2": "Não",
+            "9": "Ignorado"
+        },
+        "pagina": 2
+    },
+    "ANT_DOSE_C": {
+        "label": "nu_dose_conjuga\nda_meningo_c",
+        "fatores": {},
+        "pagina": 2
+    },
+    "ANT_DTUL_C": {
+        "label": "dt_dose_conjugad\na_meningo_c",
+        "fatores": {},
+        "pagina": 2
+    },
+    "ANT_BCG": {
+        "label": "st_vacina_bcg",
+        "fatores": {
+            "1": "Sim",
+            "2": "Não",
+            "9": "Ignorado"
+        },
+        "pagina": 2
+    },
+    "ANT_DOSE_4": {
+        "label": "nu_dose_bcg",
+        "fatores": {},
+        "pagina": 2
+    },
+    "ANT_DTUL_4": {
+        "label": "dt_dose_bcg",
+        "fatores": {},
+        "pagina": 2
+    },
+    "ANT_TRIPLI": {
+        "label": "st_vacina_triplice",
+        "fatores": {
+            "1": "Sim",
+            "2": "Não",
+            "9": "Ignorado"
+        },
+        "pagina": 3
+    },
+    "ANT_DOSE_5": {
+        "label": "nu_dose_triplice",
+        "fatores": {},
+        "pagina": 3
+    },
+    "ANT_DTUL_5": {
+        "label": "dt_dose_triplice",
+        "fatores": {},
+        "pagina": 3
+    },
+    "ANT_HEMO_T": {
+        "label": "st_vacina_hemofil\no",
+        "fatores": {
+            "1": "Sim",
+            "2": "Não",
+            "9": "Ignorado"
+        },
+        "pagina": 3
+    },
+    "ANT_DOSE_T": {
+        "label": "nu_dose_hemofilo",
+        "fatores": {},
+        "pagina": 3
+    },
+    "ANT_DTUL_T": {
+        "label": "dt_dose_hemofilo",
+        "fatores": {},
+        "pagina": 3
+    },
+    "ANT_PNEUMO": {
+        "label": "st_vacina_pneum\nococo",
+        "fatores": {
+            "1": "Sim",
+            "2": "Não",
+            "9": "Ignorado"
+        },
+        "pagina": 3
+    },
+    "ANT_DOSE_7": {
+        "label": "nu_dose_pneumo\ncoco",
+        "fatores": {},
+        "pagina": 3
+    },
+    "ANT_DTUL_7": {
+        "label": "dt_dose_pneumoc\noco",
+        "fatores": {},
+        "pagina": 3
+    },
+    "ANT_OUTRA": {
+        "label": "st_vacina_outro",
+        "fatores": {
+            "1": "Sim",
+            "2": "Não",
+            "9": "Ignorado"
+        },
+        "pagina": 3
+    },
+    "ANT_OU_DE": {
+        "label": "ds_vacina_outro",
+        "fatores": {},
+        "pagina": 3
+    },
+    "ANT_DTUL_8": {
+        "label": "dt_dose_outro",
+        "fatores": {},
+        "pagina": 3
+    },
+    "ANT_AIDS": {
+        "label": "tp_doenca_pre_ai\nds_hiv",
+        "fatores": {},
+        "pagina": 3
+    },
+    "ANT_IMUNO": {
+        "label": "tp_doenca_pre_o\nutra_doenca",
+        "fatores": {},
+        "pagina": 4
+    },
+    "ANT_IRA": {
+        "label": "tp_doenca_pre_ir\na",
+        "fatores": {},
+        "pagina": 4
+    },
+    "ANT_TUBE": {
+        "label": "tp_doenca_pre_tu\nberculose",
+        "fatores": {},
+        "pagina": 4
+    },
+    "ANT_TRAUMA": {
+        "label": "tp_doenca_pre_tr\naumatismo",
+        "fatores": {},
+        "pagina": 4
+    },
+    "ANT_INF_HO": {
+        "label": "tp_doenca_pre_in\nfeccao",
+        "fatores": {},
+        "pagina": 4
+    },
+    "ANT_OUTRO": {
+        "label": "tp_doenca_pre_o\nutro",
+        "fatores": {},
+        "pagina": 4
+    },
+    "ANT_OUTR_D": {
+        "label": "ds_doenca_pre_e\nxistente_outro",
+        "fatores": {},
+        "pagina": 4
+    },
+    "ANT_NOMECO": {
+        "label": "no_contato",
+        "fatores": {},
+        "pagina": 4
+    },
+    "ANT_ENDECO": {
+        "label": "no_endereco",
+        "fatores": {},
+        "pagina": 4
+    },
+    "ANT_SECUND": {
+        "label": "st_caso_secundar\nio",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_CEFALE": {
+        "label": "st_sinais_cefaleia",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_FEBRE": {
+        "label": "st_sinais_febre",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_VOMITO": {
+        "label": "st_sinais_vomito",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_CONVUL": {
+        "label": "st_sinais_convuls\nao",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_RIGIDE": {
+        "label": "st_sinais_rigidez_\nnuca",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_KERNIG": {
+        "label": "st_sinais_kenirg",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_ABAULA": {
+        "label": "st_sinais_abaula\nmento",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_COMA": {
+        "label": "st_sinais_coma",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_PETEQU": {
+        "label": "st_sinais_petequi\nas",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 5
+    },
+    "CLI_OUTRAS": {
+        "label": "st_sinais_outro",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 6
+    },
+    "CLI_ESPECI": {
+        "label": "ds_sinais_outro",
+        "fatores": {},
+        "pagina": 6
+    },
+    "ATE_HOSPIT": {
+        "label": "st_ocorreu_hospit\nalizacao",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "Ignorado"
+        },
+        "pagina": 6
+    },
+    "ATE_INTERN": {
+        "label": "st_ocorreu_hospit\nalizacao",
+        "fatores": {},
+        "pagina": 6
+    },
+    "ATE_UF_HOS": {
+        "label": "co_uf_hospital",
+        "fatores": {},
+        "pagina": 6
+    },
+    "ATE_MUNICI": {
+        "label": "co_municipio_hos\npital",
+        "fatores": {},
+        "pagina": 6
+    },
+    "ATE_HOSP_1": {
+        "label": "co_unidade_hospi\ntal",
+        "fatores": {},
+        "pagina": 6
+    },
+    "LAB_PUNCAO": {
+        "label": "st_puncao_lombar",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "ignorado"
+        },
+        "pagina": 6
+    },
+    "LAB_DTPUNC": {
+        "label": "dt_puncao",
+        "fatores": {},
+        "pagina": 7
+    },
+    "LAB_ASPECT": {
+        "label": "tp_aspector_liquor",
+        "fatores": {
+            "1": "Límpido",
+            "2": "Purulento",
+            "3": "Hemorrágico",
+            "4": "Turvo",
+            "5": "Xantocrômico",
+            "6": "Outro"
+        },
+        "pagina": 7
+    },
+    "LAB_CTLESA": {
+        "label": "nu_cultura_lesao_\npetequial",
+        "fatores": {},
+        "pagina": 7
+    },
+    "LAB_CTSANG": {
+        "label": "nu_cultura_sangu\ne_soro",
+        "fatores": {},
+        "pagina": 7
+    },
+    "LAB_CTESCA": {
+        "label": "nu_cultura_escarr\no",
+        "fatores": {},
+        "pagina": 7
+    },
+    "LAB_BCLIQU": {
+        "label": "nu_bacteriosc_liq\nuor",
+        "fatores": {},
+        "pagina": 7
+    },
+    "LAB_BCLESA": {
+        "label": "nu_bacteriosc_les\nao_petequial",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_BCSANG": {
+        "label": "nu_bacteriosc_sa\nngue_soro",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_BCESCA": {
+        "label": "nu_bacteriosc_es\ncarro",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_CILIQU": {
+        "label": "nu_cie_liquor",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_CISANG": {
+        "label": "nu_cie_sangue_s\noro",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_AGLIQU": {
+        "label": "nu_aglutinacao_li\nquor",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_AGSANG": {
+        "label": "nu_aglunicacao_s\nangue_soro",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_ISLIQU": {
+        "label": "nu_isolamento_vir\nal_liquor",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_ISFEZE": {
+        "label": "nu_isolamento_vir\nal_fezes",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_PCLIQU": {
+        "label": "nu_tecnica_labora",
+        "fatores": {},
+        "pagina": 8
+    },
+    "LAB_PCLESA": {
+        "label": "nu_tecnica_labora\ntorio_lesao",
+        "fatores": {},
+        "pagina": 9
+    },
+    "LAB_PCSANG": {
+        "label": "nu_tecnica_labora\ntorio_sangue",
+        "fatores": {},
+        "pagina": 9
+    },
+    "LAB_PCESCA": {
+        "label": "nu_tecnica_labora\ntorio_escarro",
+        "fatores": {},
+        "pagina": 9
+    },
+    "CLASSI_FIN": {
+        "label": "tp_classificacao_fi\nnal",
+        "fatores": {
+            "1": "confirmado",
+            "2": "descartado"
+        },
+        "pagina": 9
+    },
+    "CON_DIAGES": {
+        "label": "tp_classificacao_c\nonfirmado",
+        "fatores": {
+            "1": "Meningococcemia",
+            "2": "Meningite",
+            "3": "Meningite",
+            "4": "Meningite",
+            "5": "Meningite por",
+            "6": "Meningite não",
+            "7": "Meningite Asséptica",
+            "8": "Meningite por outra",
+            "9": "Meningite por",
+            "10": "Meningite por"
+        },
+        "pagina": 9
+    },
+    "CLA_ME_BAC": {
+        "label": "co_bacteria",
+        "fatores": {},
+        "pagina": 10
+    },
+    "CLA_ME_ASS": {
+        "label": "co_asseptica",
+        "fatores": {},
+        "pagina": 10
+    },
+    "CLA_ME_ETI": {
+        "label": "co_etiologia",
+        "fatores": {},
+        "pagina": 10
+    },
+    "CRITERIO": {
+        "label": "tp_criterio_confirm\nacao",
+        "fatores": {},
+        "pagina": 10
+    },
+    "CLA_SOROGR": {
+        "label": "co_sorogrupo",
+        "fatores": {},
+        "pagina": 11
+    },
+    "MED_NUCOMU": {
+        "label": "nu_comunicante",
+        "fatores": {},
+        "pagina": 11
+    },
+    "MED_QUIMIO": {
+        "label": "st_quimioprofilaxi\na",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "ignorado"
+        },
+        "pagina": 11
+    },
+    "MED_DT_QUI": {
+        "label": "dt_quimioprolaxia",
+        "fatores": {},
+        "pagina": 12
+    },
+    "DOENCA_TRA": {
+        "label": "st_doenca_trabalh\no",
+        "fatores": {
+            "1": "sim",
+            "2": "não",
+            "9": "ignorado"
+        },
+        "pagina": 12
+    },
+    "EVOLUCAO": {
+        "label": "tp_evolucao_caso",
+        "fatores": {
+            "1": "alta",
+            "2": "óbito por meningite",
+            "3": "óbito por outra"
+        },
+        "pagina": 12
+    },
+    "MED_DT_EVO": {
+        "label": "dt_evolucao",
+        "fatores": {},
+        "pagina": 13
+    },
+    "DT_ENCERRA": {
+        "label": "dt_encerramento",
+        "fatores": {},
+        "pagina": 13
+    },
+    "LAB_HEMA": {
+        "label": "nu_hemacias",
+        "fatores": {},
+        "pagina": 13
+    },
+    "LAB_NEUTRO": {
+        "label": "nu_neutrofilo",
+        "fatores": {},
+        "pagina": 13
+    },
+    "LAB_GLICO": {
+        "label": "nu_glicose",
+        "fatores": {},
+        "pagina": 14
+    },
+    "LAB_LEUCO": {
+        "label": "nu_leucocito",
+        "fatores": {},
+        "pagina": 14
+    },
+    "LAB_EOSI": {
+        "label": "nu_eosinofilo",
+        "fatores": {},
+        "pagina": 14
+    },
+    "LAB_PROT": {
+        "label": "nu_proteina",
+        "fatores": {},
+        "pagina": 14
+    },
+    "LAB_MONO": {
+        "label": "nu_monocito",
+        "fatores": {},
+        "pagina": 14
+    },
+    "LAB_LINFO": {
+        "label": "nu_linfocito",
+        "fatores": {},
+        "pagina": 14
+    },
+    "LAB_CLOR": {
+        "label": "nu_cloreto",
+        "fatores": {},
+        "pagina": 14
+    },
+    "NU_LOTE_I": {
+        "label": "nu_lote_vertical",
+        "fatores": {},
+        "pagina": 14
+    }
+}

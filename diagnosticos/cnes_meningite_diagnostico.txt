@@ -1,0 +1,55 @@
+DIAGNÓSTICO CNES PARA MENINGITE
+======================================================================
+Competência CNES usada: 2026-01
+Arquivo SINAN: datalake/sinan/meningite_br.parquet
+
+1. Cobertura da chave CNES
+----------------------------------------------------------------------
+CNES distintos no SINAN: 10002
+CNES com match no ST nacional: 8622
+CNES sem match no ST nacional: 1380
+Cobertura ST → SINAN: 86.2%
+
+2. Qualidade de COD_CEP
+----------------------------------------------------------------------
+CNES únicos diagnosticados: 8622
+COD_CEP preenchido: 8622 (100.0%)
+COD_CEP válido (8 dígitos): 8622 (100.0%)
+CEPs válidos únicos: 6815
+CEPs válidos compartilhados por >1 CNES: 1161
+
+3. Qualidade de CODUFMUN
+----------------------------------------------------------------------
+CODUFMUN preenchido: 8622 (100.0%)
+Município válido (6 dígitos): 8622 (100.0%)
+UF derivável válida: 8622 (100.0%)
+
+4. Resolução espacial potencial
+----------------------------------------------------------------------
+CEP: 8622 (100.0%)
+Município: 0 (0.0%)
+UF: 0 (0.0%)
+Sem localização: 0 (0.0%)
+
+5. Interpretação inicial
+----------------------------------------------------------------------
+CEP parece forte como primeira resolução espacial.
+Município parece excelente como fallback.
+
+6. Top 15 TP_UNID
+----------------------------------------------------------------------
+05: 3500
+02: 2471
+73: 774
+07: 281
+36: 279
+68: 271
+04: 244
+50: 213
+15: 140
+20: 110
+01: 102
+39: 69
+22: 38
+62: 30
+21: 20

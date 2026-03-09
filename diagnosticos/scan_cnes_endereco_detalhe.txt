@@ -1,0 +1,150 @@
+==========================================================================================
+GRUPO: DC
+==========================================================================================
+Arquivo escolhido: DCTO2601.dbc
+Total de colunas: 171
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - S_RECEPC
+ - ATEND_PR
+Primeiro registro (campos de interesse):
+  CODUFMUN: 170110
+  S_RECEPC: 1
+  ATEND_PR: 1
+
+==========================================================================================
+GRUPO: EE
+==========================================================================================
+Arquivo escolhido: EESP1912.dbc
+Total de colunas: 31
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - COD_CEP
+Primeiro registro (campos de interesse):
+  CODUFMUN: 350320
+  COD_CEP: 14801150
+
+==========================================================================================
+GRUPO: EF
+==========================================================================================
+Arquivo escolhido: EFufAAmm.dbc
+Total de colunas: 31
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - COD_CEP
+
+==========================================================================================
+GRUPO: EP
+==========================================================================================
+Arquivo escolhido: EPTO2601.dbc
+Total de colunas: 108
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - COD_CEP
+ - ATEND_PR
+ - NOME_EQP
+ - NOMEAREA
+Primeiro registro (campos de interesse):
+  CODUFMUN: 170025
+  COD_CEP: 77693000
+  ATEND_PR: 1
+  NOME_EQP: EMULTI ABREULANDIA
+  NOMEAREA: EQUIPE 1
+
+==========================================================================================
+GRUPO: EQ
+==========================================================================================
+Arquivo escolhido: EQTO2601.dbc
+Total de colunas: 28
+Colunas de interesse encontradas:
+ - CODUFMUN
+Primeiro registro (campos de interesse):
+  CODUFMUN: 170025
+
+==========================================================================================
+GRUPO: GM
+==========================================================================================
+Arquivo escolhido: GMufAAmm.dbc
+Total de colunas: 31
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - COD_CEP
+
+==========================================================================================
+GRUPO: HB
+==========================================================================================
+Arquivo escolhido: HBufAAmm.dbc
+Total de colunas: 32
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - COD_CEP
+
+==========================================================================================
+GRUPO: IN
+==========================================================================================
+Arquivo escolhido: INufAAmm.dbc
+Total de colunas: 31
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - COD_CEP
+
+==========================================================================================
+GRUPO: LT
+==========================================================================================
+Arquivo escolhido: LTTO2601.dbc
+Total de colunas: 28
+Colunas de interesse encontradas:
+ - CODUFMUN
+Primeiro registro (campos de interesse):
+  CODUFMUN: 170070
+
+==========================================================================================
+GRUPO: PF
+==========================================================================================
+Arquivo escolhido: PFTO2601.dbc
+Total de colunas: 40
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - NOMEPROF
+ - UFMUNRES
+Primeiro registro (campos de interesse):
+  CODUFMUN: 170025
+  NOMEPROF: JERSON PEREIRA NOGUEIRA
+  UFMUNRES: 000000
+
+==========================================================================================
+GRUPO: RC
+==========================================================================================
+Arquivo escolhido: RCufAAmm.dbc
+Total de colunas: 31
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - COD_CEP
+
+==========================================================================================
+GRUPO: SR
+==========================================================================================
+Arquivo escolhido: SRTO2601.dbc
+Total de colunas: 32
+Colunas de interesse encontradas:
+ - CODUFMUN
+Primeiro registro (campos de interesse):
+  CODUFMUN: 170025
+
+==========================================================================================
+GRUPO: ST
+==========================================================================================
+Arquivo escolhido: STTO2601.dbc
+Total de colunas: 208
+Colunas de interesse encontradas:
+ - CODUFMUN
+ - COD_CEP
+ - ATENDAMB
+ - ATENDHOS
+ - ATEND_PR
+Primeiro registro (campos de interesse):
+  CODUFMUN: 170025
+  COD_CEP: 77693000
+  ATENDAMB: 1
+  ATENDHOS: 0
+  ATEND_PR: 1

@@ -1,0 +1,939 @@
+dataset:
+  name: sinan_meningite
+  source: SINAN / DATASUS
+  description: Casos notificados de meningite no Brasil
+  variables_total_parquet: 131
+
+external_lookup_variables:
+  - ID_AGRAVO
+  - SG_UF_NOT
+  - ID_MUNICIP
+  - ID_REGIONA
+  - ID_UNIDADE
+  - ID_OCUPA_N
+  - SG_UF
+  - ID_MN_RESI
+  - ID_RG_RESI
+  - ID_PAIS
+  - ATE_UF_HOS
+  - ATE_MUNICI
+
+variables:
+
+  TP_NOT:
+    group: notificacao
+    label: Tipo de notificação
+    description: Indica o tipo de notificação
+    domain_type: closed_internal
+    values:
+      "1": Individual
+      "2": Surto
+
+  CS_MENING:
+    group: notificacao
+    label: Tipo de meningite
+    description: Campo de identificação do agravo meningite
+    domain_type: system
+
+  DT_NOTIFIC:
+    group: notificacao
+    label: Data da notificação
+    description: Data de preenchimento da ficha de notificação
+    domain_type: date
+
+  SEM_NOT:
+    group: notificacao
+    label: Semana epidemiológica da notificação
+    description: Semana epidemiológica correspondente à data de notificação
+    domain_type: numeric
+
+  NU_ANO:
+    group: notificacao
+    label: Ano da notificação
+    description: Ano da notificação
+    domain_type: numeric
+
+  DT_SIN_PRI:
+    group: notificacao
+    label: Data dos primeiros sintomas
+    description: Data de início dos primeiros sintomas
+    domain_type: date
+
+  SEM_PRI:
+    group: notificacao
+    label: Semana epidemiológica dos primeiros sintomas
+    description: Semana epidemiológica correspondente à data dos primeiros sintomas
+    domain_type: numeric
+
+  ANO_NASC:
+    group: paciente
+    label: Ano de nascimento
+    description: Ano de nascimento do paciente
+    domain_type: numeric
+
+  NU_IDADE_N:
+    group: paciente
+    label: Idade numérica
+    description: Idade numérica registrada no sistema
+    domain_type: numeric
+
+  CS_SEXO:
+    group: paciente
+    label: Sexo
+    description: Sexo do paciente
+    domain_type: closed_internal
+    values:
+      M: Masculino
+      F: Feminino
+      I: Ignorado
+
+  CS_GESTANT:
+    group: paciente
+    label: Situação gestacional
+    description: Situação gestacional da paciente
+    domain_type: closed_internal
+    values:
+      "1": Primeiro trimestre
+      "2": Segundo trimestre
+      "3": Terceiro trimestre
+      "4": Idade gestacional ignorada
+      "5": Não
+      "6": Não se aplica
+      "9": Ignorado
+
+  CS_RACA:
+    group: paciente
+    label: Raça ou cor
+    description: Raça ou cor autodeclarada
+    domain_type: closed_internal
+    values:
+      "1": Branca
+      "2": Preta
+      "3": Amarela
+      "4": Parda
+      "5": Indígena
+      "9": Ignorado
+
+  CS_ESCOL_N:
+    group: paciente
+    label: Escolaridade
+    description: Escolaridade do paciente
+    domain_type: closed_internal
+    values:
+      "0": Analfabeto
+      "1": 1ª a 4ª série incompleta do EF
+      "2": 4ª série completa do EF
+      "3": 5ª a 8ª série incompleta do EF
+      "4": Ensino fundamental completo
+      "5": Ensino médio incompleto
+      "6": Ensino médio completo
+      "7": Educação superior incompleta
+      "8": Educação superior completa
+      "9": Ignorado
+      "10": Não se aplica
+
+  NDUPLIC_N:
+    group: sistema
+    label: Indicador de duplicidade
+    description: Indicador administrativo de possível duplicidade
+    domain_type: system
+
+  DT_DIGITA:
+    group: sistema
+    label: Data de digitação
+    description: Data de digitação do registro
+    domain_type: date
+
+  DT_TRANSUS:
+    group: sistema
+    label: Data de transmissão municipal
+    description: Data de transmissão no fluxo municipal
+    domain_type: date
+
+  DT_TRANSDM:
+    group: sistema
+    label: Data de transmissão estadual
+    description: Data de transmissão no fluxo estadual
+    domain_type: date
+
+  DT_TRANSSM:
+    group: sistema
+    label: Data de transmissão federal
+    description: Data de transmissão no fluxo federal
+    domain_type: date
+
+  DT_TRANSRM:
+    group: sistema
+    label: Data de transmissão regional
+    description: Data de transmissão regional
+    domain_type: date
+
+  DT_TRANSRS:
+    group: sistema
+    label: Data de transmissão regional de saúde
+    description: Data de transmissão regional de saúde
+    domain_type: date
+
+  DT_TRANSSE:
+    group: sistema
+    label: Data de transmissão secretaria estadual
+    description: Data de transmissão na secretaria estadual
+    domain_type: date
+
+  NU_LOTE_V:
+    group: sistema
+    label: Lote vertical
+    description: Identificador do lote de transmissão vertical
+    domain_type: system
+
+  NU_LOTE_H:
+    group: sistema
+    label: Lote horizontal
+    description: Identificador do lote histórico/horizontal
+    domain_type: system
+
+  CS_FLXRET:
+    group: sistema
+    label: Fluxo de retorno
+    description: Indicador administrativo de fluxo de retorno
+    domain_type: system
+
+  FLXRECEBI:
+    group: sistema
+    label: Fluxo recebido
+    description: Indicador administrativo de recebimento de fluxo
+    domain_type: system
+
+  MIGRADO_W:
+    group: sistema
+    label: Registro migrado
+    description: Indicador administrativo de migração
+    domain_type: system
+
+  DT_INVEST:
+    group: investigacao
+    label: Data da investigação
+    description: Data de início da investigação do caso
+    domain_type: date
+
+  ANT_AC:
+    group: vacinacao
+    label: Vacinação meningocócica A/C
+    description: História vacinal de polissacarídica A/C
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_DOSE_3:
+    group: vacinacao
+    label: Número de doses A/C
+    description: Número de doses da vacina polissacarídica A/C
+    domain_type: numeric
+
+  ANT_DTUL_3:
+    group: vacinacao
+    label: Data da última dose A/C
+    description: Data da última dose da vacina polissacarídica A/C
+    domain_type: date
+
+  ANT_BC:
+    group: vacinacao
+    label: Vacinação meningocócica B/C
+    description: História vacinal de polissacarídica B/C
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_DOSES_:
+    group: vacinacao
+    label: Número de doses B/C
+    description: Número de doses da vacina polissacarídica B/C
+    domain_type: numeric
+
+  ANT_DTULT_:
+    group: vacinacao
+    label: Data da última dose B/C
+    description: Data da última dose da vacina polissacarídica B/C
+    domain_type: date
+
+  ANT_CONJ_C:
+    group: vacinacao
+    label: Vacinação conjugada meningococo C
+    description: História vacinal de vacina conjugada meningo C
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_DOSE_C:
+    group: vacinacao
+    label: Número de doses conjugada meningococo C
+    description: Número de doses da vacina conjugada meningo C
+    domain_type: numeric
+
+  ANT_DTUL_C:
+    group: vacinacao
+    label: Data da última dose conjugada meningococo C
+    description: Data da última dose da vacina conjugada meningo C
+    domain_type: date
+
+  ANT_BCG:
+    group: vacinacao
+    label: Vacinação BCG
+    description: História vacinal de BCG
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_DOSE_4:
+    group: vacinacao
+    label: Número de doses BCG
+    description: Número de doses da vacina BCG
+    domain_type: numeric
+
+  ANT_DTUL_4:
+    group: vacinacao
+    label: Data da última dose BCG
+    description: Data da última dose da vacina BCG
+    domain_type: date
+
+  ANT_TRIPLI:
+    group: vacinacao
+    label: Vacinação tríplice viral
+    description: História vacinal de tríplice viral
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_DOSE_5:
+    group: vacinacao
+    label: Número de doses tríplice viral
+    description: Número de doses da vacina tríplice viral
+    domain_type: numeric
+
+  ANT_DTUL_5:
+    group: vacinacao
+    label: Data da última dose tríplice viral
+    description: Data da última dose da vacina tríplice viral
+    domain_type: date
+
+  ANT_HEMO_T:
+    group: vacinacao
+    label: Vacinação Haemophilus
+    description: História vacinal contra hemófilo (tetravalente ou Hib)
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_DOSE_T:
+    group: vacinacao
+    label: Número de doses Haemophilus
+    description: Número de doses da vacina contra hemófilo
+    domain_type: numeric
+
+  ANT_DTUL_T:
+    group: vacinacao
+    label: Data da última dose Haemophilus
+    description: Data da última dose da vacina contra hemófilo
+    domain_type: date
+
+  ANT_PNEUMO:
+    group: vacinacao
+    label: Vacinação pneumococo
+    description: História vacinal contra pneumococo
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_DOSE_7:
+    group: vacinacao
+    label: Número de doses pneumococo
+    description: Número de doses da vacina pneumocócica
+    domain_type: numeric
+
+  ANT_DTUL_7:
+    group: vacinacao
+    label: Data da última dose pneumococo
+    description: Data da última dose da vacina pneumocócica
+    domain_type: date
+
+  ANT_OUTRA:
+    group: vacinacao
+    label: Outra vacina
+    description: História de outra vacinação
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_OU_DE:
+    group: vacinacao
+    label: Outra vacina especificação
+    description: Descrição de outra vacina
+    domain_type: text
+
+  ANT_DTUL_8:
+    group: vacinacao
+    label: Data da última dose de outra vacina
+    description: Data da última dose de outra vacina
+    domain_type: date
+
+  ANT_AIDS:
+    group: antecedentes
+    label: AIDS/HIV
+    description: Doença pré-existente AIDS/HIV
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_IMUNO:
+    group: antecedentes
+    label: Outras imunodepressões
+    description: Doença pré-existente imunodepressora
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_IRA:
+    group: antecedentes
+    label: IRA
+    description: Doença pré-existente infecção respiratória aguda
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_TUBE:
+    group: antecedentes
+    label: Tuberculose
+    description: Doença pré-existente tuberculose
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_TRAUMA:
+    group: antecedentes
+    label: Traumatismo
+    description: Doença pré-existente traumatismo
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_INF_HO:
+    group: antecedentes
+    label: Infecção hospitalar
+    description: Doença pré-existente infecção hospitalar
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_OUTRO:
+    group: antecedentes
+    label: Outra doença pré-existente
+    description: Indica outra doença pré-existente
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ANT_OUTR_D:
+    group: antecedentes
+    label: Outra doença pré-existente especificação
+    description: Descrição de outra doença pré-existente
+    domain_type: text
+
+  ANT_CONT_N:
+    group: epidemiologia
+    label: Contato com caso suspeito ou confirmado
+    description: Local de contato com caso suspeito ou confirmado de meningite
+    domain_type: closed_internal
+    values:
+      "1": Domicílio
+      "2": Vizinhança
+      "3": Trabalho
+      "4": Creche ou escola
+      "5": Posto de saúde ou hospital
+      "6": Outro estado ou município
+      "7": Sem história de contato
+      "8": Outro país
+      "9": Ignorado
+
+  ANT_SECUND:
+    group: epidemiologia
+    label: Caso secundário
+    description: Indica se o caso é secundário
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_CEFALE:
+    group: clinica
+    label: Cefaleia
+    description: Presença de cefaleia
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_FEBRE:
+    group: clinica
+    label: Febre
+    description: Presença de febre
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_VOMITO:
+    group: clinica
+    label: Vômitos
+    description: Presença de vômitos
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_CONVUL:
+    group: clinica
+    label: Convulsões
+    description: Presença de convulsões
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_RIGIDE:
+    group: clinica
+    label: Rigidez de nuca
+    description: Presença de rigidez de nuca
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_KERNIG:
+    group: clinica
+    label: Kernig/Brudzinski
+    description: Presença de sinais de Kernig ou Brudzinski
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_ABAULA:
+    group: clinica
+    label: Abaulamento de fontanela
+    description: Presença de abaulamento de fontanela
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_COMA:
+    group: clinica
+    label: Coma
+    description: Presença de coma
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_PETEQU:
+    group: clinica
+    label: Petéquias ou sufusões hemorrágicas
+    description: Presença de petéquias ou sufusões hemorrágicas
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_OUTRAS:
+    group: clinica
+    label: Outros sinais e sintomas
+    description: Indica presença de outros sinais e sintomas
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  CLI_ESPECI:
+    group: clinica
+    label: Outros sinais e sintomas especificação
+    description: Especificação de outros sinais e sintomas
+    domain_type: text
+
+  ATE_HOSPIT:
+    group: atendimento
+    label: Hospitalização
+    description: Indica se houve hospitalização
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  ATE_INTERN:
+    group: atendimento
+    label: Data da internação
+    description: Data da internação hospitalar
+    domain_type: date
+
+  LAB_PUNCAO:
+    group: laboratorio
+    label: Punção lombar
+    description: Indica se foi realizada punção lombar
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  LAB_DTPUNC:
+    group: laboratorio
+    label: Data da punção
+    description: Data da realização da punção lombar
+    domain_type: date
+
+  LAB_ASPECT:
+    group: laboratorio
+    label: Aspecto do líquor
+    description: Aspecto do líquor obtido na punção
+    domain_type: closed_internal
+    values:
+      "1": Límpido
+      "2": Purulento
+      "3": Hemorrágico
+      "4": Turvo
+      "5": Xantocrômico
+      "6": Outro
+      "9": Ignorado
+
+  LAB_CTLIQU:
+    group: laboratorio
+    label: Cultura líquor
+    description: Resultado de cultura em líquor
+    domain_type: annex_internal
+    annex_ref: quadro_vii_cultura
+
+  LAB_CTLESA:
+    group: laboratorio
+    label: Cultura lesão petequial
+    description: Resultado de cultura em lesão petequial
+    domain_type: annex_internal
+    annex_ref: quadro_vii_cultura
+
+  LAB_CTSANG:
+    group: laboratorio
+    label: Cultura sangue/soro
+    description: Resultado de cultura em sangue ou soro
+    domain_type: annex_internal
+    annex_ref: quadro_vii_cultura
+
+  LAB_CTESCA:
+    group: laboratorio
+    label: Cultura escarro
+    description: Resultado de cultura em escarro
+    domain_type: annex_internal
+    annex_ref: quadro_vii_cultura
+
+  LAB_BCLIQU:
+    group: laboratorio
+    label: Bacterioscopia líquor
+    description: Resultado de bacterioscopia em líquor
+    domain_type: annex_internal
+    annex_ref: quadro_viii_bacterioscopia
+
+  LAB_BCLESA:
+    group: laboratorio
+    label: Bacterioscopia lesão petequial
+    description: Resultado de bacterioscopia em lesão petequial
+    domain_type: annex_internal
+    annex_ref: quadro_viii_bacterioscopia
+
+  LAB_BCSANG:
+    group: laboratorio
+    label: Bacterioscopia sangue/soro
+    description: Resultado de bacterioscopia em sangue ou soro
+    domain_type: annex_internal
+    annex_ref: quadro_viii_bacterioscopia
+
+  LAB_BCESCA:
+    group: laboratorio
+    label: Bacterioscopia escarro
+    description: Resultado de bacterioscopia em escarro
+    domain_type: annex_internal
+    annex_ref: quadro_viii_bacterioscopia
+
+  LAB_CILIQU:
+    group: laboratorio
+    label: CIE líquor
+    description: Resultado de CIE em líquor
+    domain_type: annex_internal
+    annex_ref: quadro_ix_cie
+
+  LAB_CISANG:
+    group: laboratorio
+    label: CIE sangue/soro
+    description: Resultado de CIE em sangue ou soro
+    domain_type: annex_internal
+    annex_ref: quadro_ix_cie
+
+  LAB_AGLIQU:
+    group: laboratorio
+    label: Aglutinação pelo látex líquor
+    description: Resultado de aglutinação pelo látex em líquor
+    domain_type: annex_internal
+    annex_ref: quadro_x_latex
+
+  LAB_AGSANG:
+    group: laboratorio
+    label: Aglutinação pelo látex sangue/soro
+    description: Resultado de aglutinação pelo látex em sangue ou soro
+    domain_type: annex_internal
+    annex_ref: quadro_x_latex
+
+  LAB_ISLIQU:
+    group: laboratorio
+    label: Isolamento viral líquor
+    description: Resultado de isolamento viral em líquor
+    domain_type: annex_internal
+    annex_ref: quadro_xi_isolamento_viral
+
+  LAB_ISFEZE:
+    group: laboratorio
+    label: Isolamento viral fezes
+    description: Resultado de isolamento viral em fezes
+    domain_type: annex_internal
+    annex_ref: quadro_xi_isolamento_viral
+
+  LAB_PCLIQU:
+    group: laboratorio
+    label: PCR líquor
+    description: Resultado de PCR em líquor
+    domain_type: annex_internal
+    annex_ref: quadro_xii_pcr
+
+  LAB_PCLESA:
+    group: laboratorio
+    label: PCR lesão petequial
+    description: Resultado de PCR em lesão petequial
+    domain_type: annex_internal
+    annex_ref: quadro_xii_pcr
+
+  LAB_PCSANG:
+    group: laboratorio
+    label: PCR sangue/soro
+    description: Resultado de PCR em sangue ou soro
+    domain_type: annex_internal
+    annex_ref: quadro_xii_pcr
+
+  LAB_PCESCA:
+    group: laboratorio
+    label: PCR escarro
+    description: Resultado de PCR em escarro
+    domain_type: annex_internal
+    annex_ref: quadro_xii_pcr
+
+  CLASSI_FIN:
+    group: classificacao
+    label: Classificação final
+    description: Classificação final do caso
+    domain_type: closed_internal
+    values:
+      "1": Confirmado
+      "2": Descartado
+
+  CON_DIAGES:
+    group: classificacao
+    label: Diagnóstico etiológico
+    description: Diagnóstico etiológico do caso confirmado
+    domain_type: annex_internal
+    annex_ref: quadro_i_etiologia_confirmada
+
+  CLA_ME_BAC:
+    group: classificacao
+    label: Meningite por outras bactérias
+    description: Etiologia bacteriana quando CON_DIAGES = 05
+    domain_type: annex_internal
+    annex_ref: quadro_ii_bacterias
+
+  CLA_ME_ASS:
+    group: classificacao
+    label: Meningite asséptica
+    description: Etiologia asséptica quando CON_DIAGES = 07
+    domain_type: annex_internal
+    annex_ref: quadro_iii_asseptica
+
+  CLA_ME_ETI:
+    group: classificacao
+    label: Meningite por outra etiologia
+    description: Outra etiologia quando CON_DIAGES = 08
+    domain_type: annex_internal
+    annex_ref: quadro_iv_outras_etiologias
+
+  CRITERIO:
+    group: classificacao
+    label: Critério de confirmação
+    description: Critério utilizado para confirmação do caso
+    domain_type: annex_internal
+    annex_ref: quadro_v_criterio_confirmacao
+
+  CLA_SOROGR:
+    group: classificacao
+    label: Sorogrupo de Neisseria meningitidis
+    description: Sorogrupo identificado para meningococo
+    domain_type: annex_internal
+    annex_ref: quadro_vi_sorogrupo
+
+  MED_NUCOMU:
+    group: controle
+    label: Número de comunicantes
+    description: Número de comunicantes identificados
+    domain_type: numeric
+
+  MED_QUIMIO:
+    group: controle
+    label: Quimioprofilaxia dos comunicantes
+    description: Indica se foi realizada quimioprofilaxia nos comunicantes
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  MED_DT_QUI:
+    group: controle
+    label: Data da quimioprofilaxia
+    description: Data em que foi realizada a quimioprofilaxia
+    domain_type: date
+
+  DOENCA_TRA:
+    group: controle
+    label: Doença relacionada ao trabalho
+    description: Indica se a doença está relacionada ao trabalho
+    domain_type: closed_internal
+    values:
+      "1": Sim
+      "2": Não
+      "9": Ignorado
+
+  EVOLUCAO:
+    group: desfecho
+    label: Evolução do caso
+    description: Evolução clínica do caso
+    domain_type: closed_internal
+    values:
+      "1": Alta
+      "2": Óbito por meningite
+      "3": Óbito por outra causa
+      "9": Ignorado
+
+  MED_DT_EVO:
+    group: desfecho
+    label: Data da evolução
+    description: Data da evolução clínica
+    domain_type: date
+
+  DT_ENCERRA:
+    group: desfecho
+    label: Data do encerramento
+    description: Data do encerramento da investigação
+    domain_type: date
+
+  LAB_HEMA:
+    group: laboratorio
+    label: Hemácias
+    description: Exame quimiocitológico - hemácias
+    domain_type: numeric
+
+  LAB_NEUTRO:
+    group: laboratorio
+    label: Neutrófilos
+    description: Exame quimiocitológico - neutrófilos
+    domain_type: numeric
+
+  LAB_GLICO:
+    group: laboratorio
+    label: Glicose
+    description: Exame quimiocitológico - glicose
+    domain_type: numeric
+
+  LAB_LEUCO:
+    group: laboratorio
+    label: Leucócitos
+    description: Exame quimiocitológico - leucócitos
+    domain_type: numeric
+
+  LAB_EOSI:
+    group: laboratorio
+    label: Eosinófilos
+    description: Exame quimiocitológico - eosinófilos
+    domain_type: numeric
+
+  LAB_PROT:
+    group: laboratorio
+    label: Proteínas
+    description: Exame quimiocitológico - proteínas
+    domain_type: numeric
+
+  LAB_MONO:
+    group: laboratorio
+    label: Monócitos
+    description: Exame quimiocitológico - monócitos
+    domain_type: numeric
+
+  LAB_LINFO:
+    group: laboratorio
+    label: Linfócitos
+    description: Exame quimiocitológico - linfócitos
+    domain_type: numeric
+
+  LAB_CLOR:
+    group: laboratorio
+    label: Cloreto
+    description: Exame quimiocitológico - cloreto
+    domain_type: numeric
+
+  NU_LOTE_I:
+    group: sistema
+    label: Lote da investigação
+    description: Identificador do lote de transferência vertical da investigação
+    domain_type: system

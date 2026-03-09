@@ -1,0 +1,23 @@
+[project]
+name = "men-ob"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dbfread>=2.0.7",
+    "duckdb>=1.4.4",
+    "geopandas>=1.1.2",
+    "geopy>=2.4.1",
+    "pandas>=2.3.3",
+    "pdfplumber>=0.11.9",
+    "pyarrow>=23.0.1",
+    "pyogrio>=0.12.1",
+    "pysus>=1.0.1",
+    "pyyaml>=6.0.3",
+    "readdbc>=0.2.0",
+    "requests>=2.32.5",
+    "sqlalchemy>=2.0.48",
+    "streamlit>=1.55.0",
+    "tables>=3.11.1",
+]
