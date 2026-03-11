@@ -1,0 +1,23 @@
+RECONSTRUÇÃO CONSERVADORA DO LOOKUP ESPACIAL CNES
+================================================================================
+Arquivo de entrada: lookup_tables/cnes_meningite_spatial.parquet
+Arquivo de saída: lookup_tables/cnes_meningite_spatial_conservador.parquet
+Limiar de plausibilidade CEP: 25.0 km
+
+Cobertura
+--------------------------------------------------------------------------------
+Total de CNES: 8622
+Resolução original = cep: 8622 (100.0%)
+
+Resultado conservador
+--------------------------------------------------------------------------------
+Resolução final = cep: 4383 (50.84%)
+Resolução final = municipio: 4239 (49.16%)
+Resolução final = uf: 0 (0.0%)
+Sem localização final: 0 (0.0%)
+
+Regras aplicadas
+--------------------------------------------------------------------------------
+CEP mantido: 4383 (50.84%)
+Fallback para município: 4239 (49.16%)
+Fallback para UF: 0 (0.0%)

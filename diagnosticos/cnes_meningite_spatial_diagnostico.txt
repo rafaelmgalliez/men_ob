@@ -1,0 +1,13 @@
+ESPACIALIZAÇÃO DO CNES DA MENINGITE
+======================================================================
+Lookup de entrada: lookup_tables/cnes_meningite_lookup.parquet
+Lookup municipal: lookup_tables/ibge_municipios_espacial.parquet
+Lookup espacial de saída: lookup_tables/cnes_meningite_spatial.parquet
+
+Cobertura final
+----------------------------------------------------------------------
+Total de CNES: 8622
+Resolvidos por CEP: 8622 (100.0%)
+Resolvidos por município: 0 (0.0%)
+Resolvidos por UF: 0 (0.0%)
+Sem localização final: 0 (0.0%)

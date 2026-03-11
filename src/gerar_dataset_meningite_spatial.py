@@ -26,7 +26,7 @@ import yaml
 
 SINAN_PATH = Path("datalake/sinan/meningite_br.parquet")
 IBGE_PATH = Path("lookup_tables/ibge_municipios_espacial.parquet")
-CNES_PATH = Path("lookup_tables/cnes_meningite_spatial.parquet")
+CNES_PATH = Path("lookup_tables/cnes_meningite_spatial_conservador.parquet")
 METADATA_PATH = Path("metadados/sinan_meningite_metadata.yaml")
 
 OUTPUT_PATH = Path("datalake/sinan/meningite_spatial.parquet")

@@ -1,3 +1,5 @@
+# README.md
+
 # 🧠 Men_Ob: Observatório de Meningites (Brasil)
 
 O **Men_Ob** é um projeto de construção de infraestrutura analítica para vigilância epidemiológica de meningites no Brasil, com foco inicial no banco nacional do **SINAN**.
@@ -18,228 +20,389 @@ A arquitetura do projeto prioriza:
 Concluído:
 
 - Download automatizado dos arquivos `.dbc` do DATASUS
-- Conversão de `.dbc` para `.dbf`
-- Leitura vetorizada com `PyArrow`
-- Consolidação em arquivo único `Parquet`
+- Conversão dos arquivos `.dbc` para `.dbf`
+- Leitura vetorizada dos dados
+- Consolidação em arquivo único Parquet
 
-Arquivo principal gerado:
+Script principal:
+
+src/extrator_sinan.py
+
+Artefato gerado:
 
 datalake/sinan/meningite_br.parquet
 
 Situação atual:
 
-427.152 registros  
-131 variáveis
+- 427.152 registros
+- 131 variáveis
+
+Esse arquivo representa a **base epidemiológica nacional consolidada** do projeto.
 
 ---
 
-# 2. Reconstrução do dicionário de dados
+## 2. Reconstrução e validação do dicionário de dados
 
-Concluído:
+Foi realizado um processo de reconstrução semântica do dicionário do SINAN meningite, a partir dos documentos de referência da ficha e do manual.
 
-- Reconstrução semântica do dicionário do SINAN meningite
-- Separação entre variáveis internas e variáveis com lookup externo
-- Estruturação em arquivo YAML
-- Validação completa contra o schema real do Parquet
+Objetivos dessa etapa:
 
-Arquivo de metadados:
+- identificar o significado epidemiológico das variáveis
+- separar variáveis internas e variáveis com dependência externa
+- estruturar o dicionário em formato programaticamente utilizável
+- validar o metadata contra o schema real do Parquet
 
-metadados/sinan_meningite_metadata.yaml
+Arquivos principais:
 
-Validação realizada:
+metadados/sinan_meningite_metadata.yaml  
+metadados/dicionario_v5_mapeado.json  
 
-119 variáveis internas  
-12 variáveis externas declaradas  
-131 variáveis cobertas  
-0 variáveis faltantes  
-0 variáveis excedentes  
+Scripts principais:
+
+src/carregar_metadata.py  
+src/validar_metadata.py  
+
+Resultado da validação:
+
+- 119 variáveis internas
+- 12 variáveis externas declaradas
+- 131 variáveis cobertas
+- 0 variáveis faltantes
+- 0 variáveis excedentes
+
+Essa etapa estabeleceu a **camada semântica canônica** do projeto.
 
 ---
 
-# 3. Lookup territorial municipal (IBGE)
+## 3. Lookup territorial municipal
 
-Concluído:
+A primeira camada espacial do projeto foi construída em escala municipal, utilizando a malha territorial do IBGE.
 
-- Geração de tabela espacial municipal a partir da malha do IBGE
-- Cálculo de centroides municipais
-- Geração de códigos compatíveis com IBGE e DATASUS
-- Salvamento em Parquet
+Objetivos:
 
-Arquivo gerado:
+- obter uma tabela territorial estável
+- gerar centroides municipais
+- compatibilizar códigos IBGE e DATASUS
+- permitir integração com os campos municipais do SINAN
+
+Script principal:
+
+src/gerar_lookup_ibge_municipios.py
+
+Artefato gerado:
 
 lookup_tables/ibge_municipios_espacial.parquet
 
 Conteúdo principal:
 
-municipio_codigo_7  
-municipio_codigo_6  
-municipio_nome  
-uf_codigo  
-uf_sigla  
-uf_nome  
-centroide_lon  
-centroide_lat  
-area_km2  
+- municipio_codigo_7
+- municipio_codigo_6
+- municipio_nome
+- uf_codigo
+- uf_sigla
+- uf_nome
+- centroide_lon
+- centroide_lat
+- area_km2
+
+Esse objeto representa o **lookup territorial municipal canônico** do projeto.
 
 ---
 
-# 4. Validação da cobertura territorial do SINAN
+## 4. Validação da cobertura territorial do SINAN
 
-Concluído:
+Foi realizada validação explícita da cobertura territorial dos principais campos geográficos do banco de meningite.
 
-Validação do join entre o banco de meningite e o lookup territorial municipal.
+Script:
 
-Campos analisados:
+src/validar_cobertura_espacial_municipios.py
 
-ID_MUNICIP — município de notificação  
-ID_MN_RESI — município de residência  
-ATE_MUNICI — município do hospital  
+Campos avaliados:
+
+- ID_MUNICIP — município de notificação
+- ID_MN_RESI — município de residência
+- ATE_MUNICI — município do hospital
 
 Resultado sintético:
 
-Município de notificação  
-- cobertura completa  
-- nenhum código inválido  
+### Município de notificação
+- cobertura completa
+- nenhum código sem correspondência
 
-Município de residência  
-- cobertura quase completa  
-- presença marginal de códigos agregados por UF  
+### Município de residência
+- cobertura quase completa
+- pequena presença de códigos especiais ou agregados por UF
 
-Município do hospital  
-- campo inconsistente  
-- presença de códigos inválidos e truncados  
-- não adequado como eixo espacial primário  
+### Município do hospital
+- campo inconsistente
+- presença de códigos inválidos, truncados e agregados
+- inadequado como eixo espacial principal
+
+Conclusão metodológica:
+
+- o eixo territorial principal do projeto é o município de residência
+- o município de notificação permanece como camada complementar
+- o município do hospital é tratado como campo auxiliar
 
 ---
 
-# 5. Investigação estrutural do CNES
+# 🌍 Estratégia geral de espacialização
 
-Foi realizada uma análise sistemática da estrutura dos microdados do **Cadastro Nacional de Estabelecimentos de Saúde (CNES)** disponíveis no FTP do DATASUS.
+A espacialização do projeto foi organizada em duas camadas:
+
+## Camada 1 — território epidemiológico do caso
+
+Baseada em:
+
+- município de residência
+- município de notificação
+
+Campos prioritários:
+
+ID_MN_RESI  
+ID_MUNICIP  
+
+## Camada 2 — localização aproximada da unidade notificadora
+
+Baseada na unidade CNES associada ao caso.
+
+Essa camada exigiu investigação específica, pois os microdados públicos do CNES não fornecem coordenadas diretas das unidades.
+
+---
+
+# 🧪 Investigação estrutural do CNES
+
+Foi realizada uma investigação sistemática da estrutura dos microdados públicos do **Cadastro Nacional de Estabelecimentos de Saúde (CNES)** disponíveis no FTP do DATASUS.
 
 Objetivo:
 
-avaliar a possibilidade de espacialização das unidades notificadoras.
+avaliar se seria possível geolocalizar diretamente as unidades notificadoras presentes no SINAN meningite.
 
-Resultado da investigação:
+Grupos inspecionados:
 
-- não existem coordenadas geográficas das unidades
-- existe o campo COD_CEP associado ao estabelecimento
-- existe identificação municipal (CODUFMUN)
-- não existe endereço estruturado completo
+DC  
+EE  
+EF  
+EP  
+EQ  
+GM  
+HB  
+IN  
+LT  
+PF  
+RC  
+SR  
+ST  
+
+Scripts utilizados:
+
+src/diagnostico/scan_ftp_cnes_endereco.py  
+src/diagnostico/inspecionar_cnes_st_dbc.py  
+
+Resultados principais:
+
+- não existem campos de latitude/longitude das unidades nos microdados públicos
+- existe o campo COD_CEP
+- existe o campo CODUFMUN
+- não existe endereço estruturado completo (logradouro + número + bairro)
 
 Conclusão:
 
 os microdados públicos do CNES **não permitem geolocalização direta das unidades de saúde**.
 
-Scripts utilizados nessa investigação encontram-se em:
-
-src/diagnostico/
-
-Resultados intermediários foram registrados em:
-
-diagnosticos/
+Essa conclusão levou à adoção de uma estratégia de espacialização indireta.
 
 ---
 
-# 6. Construção do lookup de unidades CNES
+# 🏥 Construção do lookup CNES específico da meningite
 
-Foi construído um lookup contendo apenas os estabelecimentos CNES presentes na base de meningite.
+Em vez de trabalhar com todo o universo do CNES, foi adotada uma estratégia reversa:
 
-Processo:
+1. extrair os códigos CNES presentes no banco nacional de meningite
+2. buscar apenas essas unidades no cadastro CNES
+3. construir um lookup específico para a coorte de meningite
 
-1. extração dos CNES distintos presentes no SINAN  
-2. download do cadastro nacional CNES (grupo ST)  
-3. empilhamento nacional das bases estaduais  
-4. filtragem apenas das unidades presentes no SINAN  
-5. consolidação em uma linha por CNES  
+Script:
 
-Arquivo gerado:
+src/gerar_lookup_cnes_meningite.py
+
+Artefato gerado:
 
 lookup_tables/cnes_meningite_lookup.parquet
 
-Situação atual:
+Resultado:
 
-10.002 CNES distintos no SINAN  
-8.622 unidades encontradas no cadastro CNES  
-cobertura de 86.2%
+- 10.002 CNES distintos presentes no SINAN
+- 8.622 unidades encontradas no cadastro CNES
+- cobertura de 86,2%
 
-Campos principais:
+Campos principais do lookup:
 
-cnes_codigo  
-cod_cep  
-municipio_codigo_6  
-uf_codigo  
-tp_unid  
-tpgestao  
-esfera_a  
-nat_jur  
+- cnes_codigo
+- cod_cep
+- municipio_codigo_6
+- uf_codigo
+- tp_unid
+- tpgestao
+- esfera_a
+- nat_jur
+
+Esse arquivo passou a representar o **lookup institucional das unidades notificadoras da meningite**.
 
 ---
 
-# 7. Espacialização das unidades CNES
+# 📍 Primeira espacialização do CNES
 
-Após avaliação da qualidade do campo COD_CEP foi implementado um processo de espacialização aproximada das unidades.
+Uma vez construído o lookup específico da meningite, foi testada uma estratégia de espacialização hierárquica baseada em:
 
-Hierarquia de resolução espacial:
+1. geocodificação do CEP da unidade
+2. fallback para centroide municipal
+3. fallback para centroide da UF
 
-1. geocodificação do CEP da unidade  
-2. fallback para centroide municipal  
-3. fallback para centroide da UF  
+Script:
+
+src/espacializar_cnes_meningite.py
 
 Artefato gerado:
 
 lookup_tables/cnes_meningite_spatial.parquet
 
-Conteúdo principal:
+Na primeira execução, todas as 8.622 unidades foram resolvidas formalmente por CEP.
 
-cnes_codigo  
-latitude  
-longitude  
-spatial_resolution_final  
-spatial_source  
-
-Resoluções possíveis:
-
-cep  
-municipio  
-uf  
+No entanto, essa etapa ainda precisava de validação de plausibilidade geográfica.
 
 ---
 
-# 8. Construção do dataset epidemiológico espacial integrado
+# 🔎 Validação da plausibilidade espacial do CNES
 
-Foi gerado o dataset analítico final do projeto integrando:
+Foi então realizada uma validação específica do lookup espacial do CNES.
+
+Script:
+
+src/diagnostico/validar_cnes_meningite_spatial.py
+
+A lógica da validação foi comparar a coordenada obtida pela geocodificação do CEP com o centroide do município esperado da unidade.
+
+Resultado:
+
+- Total de CNES: 8.622
+- Resolução final por CEP na versão original: 100%
+- Distância > 25 km ao município esperado: 49,16%
+- Distância > 50 km: 45,13%
+- Distância > 100 km: 42,54%
+- Distância > 250 km: 40,14%
+
+Além disso foram observadas coordenadas altamente repetidas, indicando respostas genéricas ou colapso espacial do geocoder.
+
+Conclusão metodológica:
+
+a geocodificação direta por CEP, apesar de formalmente completa, **não era suficientemente confiável para ser usada como camada espacial final da unidade**.
+
+---
+
+# 🛡️ Reconstrução conservadora da espacialização do CNES
+
+Diante da inconsistência geográfica da primeira versão, foi implementada uma reconstrução conservadora da espacialização das unidades.
+
+Script:
+
+src/reconstruir_cnes_meningite_spatial_conservador.py
+
+Regra aplicada:
+
+1. manter coordenada por CEP apenas quando a distância ao centroide do município esperado fosse ≤ 25 km
+2. caso contrário, rebaixar para centroide do município
+3. usar fallback para UF apenas quando necessário
+
+Artefato gerado:
+
+lookup_tables/cnes_meningite_spatial_conservador.parquet
+
+Resultado:
+
+- Total de CNES: 8.622
+- CEP mantido: 4.383 (50,84%)
+- Fallback para município: 4.239 (49,16%)
+- Fallback para UF: 0
+- Sem localização final: 0
+
+Essa versão passa a ser a **camada espacial canônica das unidades notificadoras**.
+
+---
+
+# 🧬 Construção do dataset epidemiológico espacial integrado
+
+Com a consolidação das camadas espaciais municipal e institucional, foi gerado o dataset epidemiológico espacial final do projeto.
+
+Script:
+
+src/gerar_dataset_meningite_spatial.py
+
+Integração realizada:
 
 SINAN + IBGE + CNES
 
-Arquivo gerado:
+Artefato gerado:
 
 datalake/sinan/meningite_spatial.parquet
 
-Este dataset contém:
+Resultado da validação do dataset final:
 
-- todas as variáveis epidemiológicas do SINAN
-- enriquecimento territorial municipal
-- localização aproximada das unidades notificadoras
-- metadados de proveniência
+- 427.152 linhas
+- 177 colunas
+- 426.887 casos com geografia de residência
+- 427.152 casos com geografia de notificação
+- 400.754 casos com geografia da unidade CNES
 
-Camadas espaciais presentes:
-
-Residência do caso  
-Município de notificação  
-Unidade notificadora (CNES)
+Esse arquivo passa a ser o **principal objeto analítico do observatório**.
 
 ---
 
-# ⚠️ Limitações metodológicas
+# ⚠️ Limitações metodológicas atuais
 
-A espacialização das unidades CNES é aproximada porque:
+Apesar de o pipeline espacial estar concluído nesta fase, algumas limitações permanecem explícitas:
 
-- CEP representa área postal e não coordenada exata
-- fallback municipal utiliza centroides geométricos
-- mudanças históricas da divisão territorial ainda não foram harmonizadas
+- a localização da unidade CNES é aproximada
+- parte das unidades usa centroide municipal como fallback
+- o campo ATE_MUNICI continua problemático
+- a geografia utilizada é a divisão territorial municipal vigente
+- a harmonização territorial histórica ainda não foi implementada
 
-Portanto as coordenadas devem ser interpretadas como **localização aproximada das unidades notificadoras**.
+Portanto, a interpretação espacial deve ser feita em escala:
+
+- municipal
+- regional
+- rede de notificação aproximada
+
+e não como geolocalização exata de unidade em escala intraurbana fina.
+
+---
+
+# 🗂️ Arquitetura de dados do projeto
+
+A arquitetura atual do Men_Ob está organizada em três camadas principais.
+
+## 1. Dados epidemiológicos consolidados
+
+Exemplo:
+
+datalake/sinan/meningite_br.parquet
+
+## 2. Lookups e tabelas auxiliares
+
+Exemplos:
+
+lookup_tables/ibge_municipios_espacial.parquet  
+lookup_tables/cnes_meningite_lookup.parquet  
+lookup_tables/cnes_meningite_spatial_conservador.parquet  
+
+## 3. Dataset analítico integrado
+
+Exemplo:
+
+datalake/sinan/meningite_spatial.parquet
+
+Essa separação permite reprodutibilidade, auditabilidade e atualização modular do pipeline.
 
 ---
 
@@ -248,78 +411,105 @@ Portanto as coordenadas devem ser interpretadas como **localização aproximada 
 Men_Ob/
 
 app/  
-main.py  
+   main.py
 
 datalake/  
-sinan/  
-meningite_br.parquet  
-meningite_spatial.parquet  
-sim/  
-sih/  
+   sinan/  
+      meningite_br.parquet  
+      meningite_spatial.parquet  
+   sim/  
+   sih/
 
 lookup_tables/  
-ibge_municipios_espacial.parquet  
-cnes_meningite_lookup.parquet  
-cnes_meningite_spatial.parquet  
+   ibge_municipios_espacial.parquet  
+   cnes_meningite_lookup.parquet  
+   cnes_meningite_spatial.parquet  
+   cnes_meningite_spatial_conservador.parquet  
 
 metadados/  
-sinan_meningite_metadata.yaml  
-dicionario.yaml  
-dicionario_v5_mapeado.json  
-...  
+   sinan_meningite_metadata.yaml  
+   dicionario_v5_mapeado.json  
+   Caderno_analises_Meningites.pdf  
+   DIC_DADOS_Meningite_v5.pdf  
+   Meningite_v5_instr.pdf  
+   Meningite_v5.pdf  
+   Tutorial_analises_epi_Meningites.pdf  
 
 diagnosticos/  
-scan_cnes_endereco_detalhe.txt  
-scan_cnes_endereco_resumo.csv  
-cnes_meningite_diagnostico.txt  
+   scan_cnes_endereco_detalhe.txt  
+   scan_cnes_endereco_resumo.csv  
+   cnes_meningite_diagnostico.txt  
+   cnes_meningite_diagnostico_amostra.csv  
+   cnes_meningite_spatial_diagnostico.txt  
+   cnes_meningite_spatial_amostra.csv  
+   cnes_meningite_spatial_validacao_resumo.txt  
+   cnes_meningite_spatial_validacao_amostra.csv  
+   cnes_meningite_spatial_validacao_top_coordenadas.csv  
+   cnes_meningite_spatial_validacao_top_distancias.csv  
+   cnes_meningite_spatial_conservador_resumo.txt  
+   cnes_meningite_spatial_conservador_amostra.csv  
+   cache_geocode_cep.csv  
 
-src/
+src/  
+   extrator_sinan.py  
+   carregar_metadata.py  
+   validar_metadata.py  
+   gerar_lookup_ibge_municipios.py  
+   validar_cobertura_espacial_municipios.py  
+   gerar_lookup_cnes_meningite.py  
+   espacializar_cnes_meningite.py  
+   reconstruir_cnes_meningite_spatial_conservador.py  
+   gerar_dataset_meningite_spatial.py  
 
-extrator_sinan.py  
-carregar_metadata.py  
-validar_metadata.py  
+   diagnostico/  
+      scan_ftp_cnes_endereco.py  
+      inspecionar_cnes_st_dbc.py  
+      diagnosticar_cnes_meningite_raw.py  
+      validar_cnes_meningite_spatial.py  
+      gerar_lookup_cnes_minimo.py  
+      validar_lookup_cnes_minimo.py  
+      inspecionar_lookup_ibge.py  
 
-gerar_lookup_ibge_municipios.py  
-validar_cobertura_espacial_municipios.py  
-
-gerar_lookup_cnes_meningite.py  
-espacializar_cnes_meningite.py  
-gerar_dataset_meningite_spatial.py  
-
-diagnostico/  
-scan_ftp_cnes_endereco.py  
-inspecionar_cnes_st_dbc.py  
-diagnosticar_cnes_meningite_raw.py  
-
-legacy/  
-extrator_dic_v5.py  
-extrator_sih.py  
-extrator_sim.py  
+   legacy/  
+      extrator_dic_v5.py  
+      extrator_sih.py  
+      extrator_sim.py  
 
 pyproject.toml  
 uv.lock  
 README.md  
+.gitignore  
+
+---
+
+# 📦 Disponibilidade dos dados
+
+Os arquivos Parquet presentes neste repositório são artefatos derivados de dados públicos do DATASUS e foram mantidos no repositório com o objetivo de:
+
+- congelar o estado atual do pipeline
+- garantir reprodutibilidade
+- permitir inspeção imediata dos objetos analíticos
+
+No futuro, especialmente com a integração de SIM e SIH, essa estratégia poderá ser revista.
 
 ---
 
 # 🚧 Próximas etapas
 
 ## Integração epidemiológica
-
 - integração da base de mortalidade (SIM)
 - integração da base hospitalar (SIH)
 
-## Evolução espacial
-
+## Evolução metodológica
 - harmonização territorial histórica
-- avaliação da estabilidade histórica do CNES
-- possível melhoria da geocodificação de unidades
+- avaliação temporal da estabilidade do CNES
+- eventual melhoria da geocodificação institucional
 
 ## Observatório analítico
-
-- construção do dataset analítico final consolidado
-- criação de dashboards epidemiológicos
-- análise espaço-temporal das meningites no Brasil
+- análises epidemiológicas descritivas
+- análise espaço-temporal
+- dashboards e visualização
+- investigação de trajetórias assistenciais
 
 ---
 
@@ -327,11 +517,11 @@ README.md
 
 O projeto já possui:
 
-- banco nacional consolidado do SINAN meningite
+- base nacional consolidada do SINAN meningite
 - dicionário semântico validado
 - lookup territorial municipal
-- lookup de unidades CNES
-- espacialização aproximada das unidades notificadoras
+- lookup institucional do CNES
+- espacialização conservadora das unidades notificadoras
 - dataset epidemiológico espacial integrado
 
-O **Men_Ob** já dispõe de uma infraestrutura de dados reprodutível capaz de sustentar análises epidemiológicas espaciais em escala nacional.
+O **Men_Ob** já dispõe de uma infraestrutura de dados reprodutível capaz de sustentar análises epidemiológicas espaciais nacionais das meningites no Brasil.

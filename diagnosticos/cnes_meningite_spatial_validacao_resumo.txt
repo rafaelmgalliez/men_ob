@@ -1,0 +1,34 @@
+VALIDAÇÃO DO LOOKUP ESPACIAL CNES DA MENINGITE
+================================================================================
+Lookup CNES espacial: lookup_tables/cnes_meningite_spatial.parquet
+Lookup municipal IBGE: lookup_tables/ibge_municipios_espacial.parquet
+
+1. Cobertura geral
+--------------------------------------------------------------------------------
+Total de CNES: 8622
+CNES com coordenadas: 8622 (100.0%)
+Resolução final = cep: 8622 (100.0%)
+Resolução final = municipio: 0 (0.0%)
+Resolução final = uf: 0 (0.0%)
+
+2. Distância entre coordenada final e município esperado
+--------------------------------------------------------------------------------
+> 25 km: 4239 (49.16%)
+> 50 km: 3891 (45.13%)
+> 100 km: 3668 (42.54%)
+> 250 km: 3461 (40.14%)
+
+3. Coordenadas repetidas
+--------------------------------------------------------------------------------
+Coordenadas compartilhadas por >= 10 CNES: 6
+Coordenadas compartilhadas por >= 25 CNES: 3
+Coordenadas compartilhadas por >= 50 CNES: 3
+
+4. Candidatos a rebaixamento de CEP para município
+--------------------------------------------------------------------------------
+CNES marcados para rebaixamento: 3668 (42.54%)
+
+5. Interpretação inicial
+--------------------------------------------------------------------------------
+Há volume relevante de desvios >100 km; a geocodificação por CEP precisa revisão sistemática.
+Existem coordenadas altamente repetidas; isso pode indicar geocodificação genérica ou colapso espacial.
